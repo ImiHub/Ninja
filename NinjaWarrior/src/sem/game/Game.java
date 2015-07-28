@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable
 			nit = new Thread(this,"Nit");
 			nit.start();
 		}
-		
+		System.out.println();
 	}
 	
 	public synchronized void stop()
