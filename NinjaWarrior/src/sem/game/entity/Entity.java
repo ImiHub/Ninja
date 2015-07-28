@@ -21,6 +21,7 @@ public  abstract class Entity
 	public int facing;
 	public boolean jumping;
 	public double gravity = 0;
+	public int numberOfJumps;
 
 	public Entity(int x, int y, int width, int height,Id id,Handler h)
 	{

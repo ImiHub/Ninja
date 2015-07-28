@@ -25,13 +25,20 @@ public class KeyInput implements KeyListener
 				{
 					case KeyEvent.VK_UP:
 						
-						if(!en.jumping)
+						
+						if(en.numberOfJumps==2 && !en.jumping)
 							{
 								en.jumping=true;
+								en.falling=false;
 								en.gravity=8;
-								
 							}
-						
+						if(en.numberOfJumps==1)
+						{
+							en.numberOfJumps--;
+							en.jumping=true;
+							en.falling=false;
+							en.gravity=8;
+						}
 						break;
 				
 						
@@ -63,7 +70,7 @@ public class KeyInput implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-int key = e.getKeyCode();
+		int key = e.getKeyCode();
 		
 		for(Entity en: Game.handler.entity)
 		{
@@ -73,9 +80,7 @@ int key = e.getKeyCode();
 				switch (key)
 				{
 					case KeyEvent.VK_UP:
-						
-					
-						
+						if(en.numberOfJumps==2) en.numberOfJumps--;
 						break;
 				
 						

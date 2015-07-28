@@ -223,11 +223,12 @@ public class Player extends Entity
 				{
 					setpY(0);
 					y = t.y - t.height-36;
-					//System.out.println("dole");
+					
 					
 					if(falling)
 					{
 						falling=false;
+						numberOfJumps=2;
 					}
 				}
 				else
@@ -245,7 +246,7 @@ public class Player extends Entity
 					setpX(0);
 					x = t.x -t.width-7;
 					
-					System.out.println("desno");
+			
 					
 				}
 				if(getLeft().intersects(t.getBounds()))
