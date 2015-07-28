@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -45,7 +46,7 @@ public class Game extends Canvas implements Runnable
 	//------------- SPRITESHEET -------------
 		public static Sprite player[] = new Sprite[30];
 		public static Sprite grass;
-	
+		public static Sprite[] simpleEnemy;
 	
 	//---------- BOOLEAN -------------------
 	public boolean running = false;
@@ -60,6 +61,7 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage level;
 	
 	public static BufferedImage bg;
+	
 	
 	
 	public Game()
@@ -93,8 +95,12 @@ public class Game extends Canvas implements Runnable
 		addKeyListener(new KeyInput());
 		
 		sheet64 = new SpriteSheet("/spritesheet64.png", 64, 64);
+		simpleEnemy = new Sprite[6];
 		
-		
+		for(int i=0;i<simpleEnemy.length;i++)
+		{
+			simpleEnemy[i] = new Sprite(sheet64,i+1,3);
+		}
 		
 		
 		try

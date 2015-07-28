@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import sem.game.entity.Entity;
 import sem.game.entity.Player;
+import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Decoration;
 import sem.game.tile.Tile;
 import sem.game.tile.Wall;
@@ -94,7 +95,7 @@ public class Handler
 				if((red>=100 && red<=120) && green==0 && blue==0) addTile(new Decoration(x*64, y*64, 64, 64, Id.decoration, this, red-100));
 			
 				if(red==0 && green==0 && blue==255) addEntity(new Player(x*70,y*100,70,100,Id.player,this));
-				
+				if(red==0 && green==200 && blue==200) addEntity(new SimpleEnemy(x*64, y*64, 64, 64, Id.simpleEnemy, this));
 					
 			}
 		}
