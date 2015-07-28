@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -120,7 +121,7 @@ public class Game extends Canvas implements Runnable
 			nit = new Thread(this,"Nit");
 			nit.start();
 		}
-		System.out.println();
+		
 	}
 	
 	public synchronized void stop()
@@ -136,6 +137,7 @@ public class Game extends Canvas implements Runnable
 			{
 			
 				e.printStackTrace();
+				
 			};
 		}
 		
@@ -151,12 +153,16 @@ public class Game extends Canvas implements Runnable
 		}
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.black);
+		g.setColor(new Color(221,248,255));
 		g.fillRect(0, 0,getWidth(), getHeight());
 		
-		g.drawImage(bg, 0, 0, getWidth(), getHeight(),null);
+		
 		
 		g.translate(cam.getX(), cam.getY());
+		g.drawImage(bg, -getWidth()+100, 0, getWidth()+100, getHeight()+100,null);
+		
+		for(int i=0;10>i;i++) 
+		g.drawImage(bg, i*(getWidth()+100), 0, getWidth()+100, getHeight()+100,null);
 		handler.render(g);
 		g.dispose();
 		bs.show();
@@ -181,6 +187,7 @@ public class Game extends Canvas implements Runnable
 	{
 		init();
 		requestFocus();
+	
 		long pvreme = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double delta = 0 ;
