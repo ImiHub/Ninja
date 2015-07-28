@@ -12,7 +12,10 @@ import javax.imageio.ImageIO;
 import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
+import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Tile;
+
+
 
 public class Player extends Entity
 {
@@ -112,9 +115,43 @@ public class Player extends Entity
 		
 		
 		tileIntersect();
+		entityIntersect();
 		gravitacija();
 		animacija();
 		
+		
+	}
+
+	private void entityIntersect()
+	{
+				
+		for(int i =0 ; handler.entity.size()>i;i++)
+		{
+			
+			
+			Entity e = handler.entity.get(i);
+			if(e.getId() == Id.simpleEnemy)
+			{
+				simpleEnemyIntersect(e);
+				
+			}
+		
+		}
+		
+	}
+
+	private void simpleEnemyIntersect(Entity e)
+	{
+		if(getBottom().intersects(e.getTop()))
+		{
+			e.die();
+		}
+		else if(getBounds().intersects(e.getBounds()))
+		{
+			
+					this.die();
+			
+		}
 		
 	}
 

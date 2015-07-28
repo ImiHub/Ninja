@@ -146,6 +146,12 @@ public  abstract class Entity
 	{
 		return new Rectangle(x,y,width,height);
 	}
+
+	public void die()
+	{
+		handler.removeEntity(this);
+		
+	}
 	
 	
 	
