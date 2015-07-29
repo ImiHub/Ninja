@@ -2,6 +2,6 @@ package sem.game;
 
 public enum Id
 {
-	player, wall, decoration, simpleEnemy
+	player, wall, decoration, simpleEnemy, coin, water
 
 }

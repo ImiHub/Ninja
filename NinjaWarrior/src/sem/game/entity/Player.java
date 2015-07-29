@@ -206,63 +206,98 @@ public class Player extends Entity
 			Tile t = handler.tile.get(i);
 			if(t.getId() == Id.wall)
 			{
-				if(getTop().intersects(t.getBounds()))
-				{
-					setpY(0);
-					y =  t.y + t.height+36;
-					if(jumping )
-					{
-					
-						jumping=false;
-						gravity=0.8;
-						falling=true;
-					}
-				
-				}
-				if(getBottom().intersects(t.getBounds()))
-				{
-					setpY(0);
-					y = t.y - t.height-36;
-					
-					
-					if(falling)
-					{
-						falling=false;
-						numberOfJumps=2;
-					}
-				}
-				else
-				{
-					if(!falling && !jumping)
-					{
-						gravity=0.0;
-						falling=true;
-					}
-				}
-				
-				if(getRight().intersects(t.getBounds()))
-				{
-				
-					setpX(0);
-					x = t.x -t.width-7;
-					
-			
-					
-				}
-				if(getLeft().intersects(t.getBounds()))
-				{
-					
-					setpX(0);
-					x = t.x +t.width;
-					System.out.println("levo");
-				}
-				
+				wallIntersect(t);
+			}
+			else if (t.getId() == Id.coin)
+			{
+				coinIntersect(t);
+			}
+			else if(t.getId() == Id.water)
+			{
+				waterIntersect(t);
 			}
 		}
 		
 		
 		
 		
+		
+	}
+
+	private void waterIntersect(Tile t)
+	{
+		if(getBottom().intersects(t.getBounds()))
+		{
+			this.die();
+		}
+		
+	}
+
+	private void coinIntersect(Tile tt)
+	{
+		
+		if (getBounds().intersects(tt.getBounds()) )
+		{
+				Game.coins++;
+				tt.die();
+				
+		}
+		
+	}
+
+	private void wallIntersect(Tile t)
+	{
+		
+		if(getTop().intersects(t.getBounds()))
+		{
+			setpY(0);
+			y =  t.y + t.height+36;
+			if(jumping )
+			{
+			
+				jumping=false;
+				gravity=0.8;
+				falling=true;
+			}
+		
+		}
+		if(getBottom().intersects(t.getBounds()))
+		{
+			setpY(0);
+			y = t.y - t.height-36;
+			
+			
+			if(falling)
+			{
+				falling=false;
+				numberOfJumps=2;
+			}
+		}
+		else
+		{
+			if(!falling && !jumping)
+			{
+				gravity=0.0;
+				falling=true;
+			}
+		}
+		
+		if(getRight().intersects(t.getBounds()))
+		{
+		
+			setpX(0);
+			x = t.x -t.width-7;
+			
+	
+			
+		}
+		if(getLeft().intersects(t.getBounds()))
+		{
+			
+			setpX(0);
+			x = t.x +t.width;
+			System.out.println("levo");
+		}
 		
 	}
 	

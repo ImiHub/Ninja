@@ -10,7 +10,7 @@ import sem.game.Id;
 public  abstract class Entity
 {
 	
-	public int x,y;
+	public  int x,y;
 	public int width,height;
 	public int pX,pY;
 	public Id id;

@@ -3,10 +3,12 @@ package sem.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 
 
 
@@ -62,7 +64,12 @@ public class Game extends Canvas implements Runnable
 	
 	public static BufferedImage bg;
 	
+	//---------- COINS ------------
 	
+		public static Sprite coin = new Sprite(new SpriteSheet("/coins_g.png", 64, 64), 1, 1); // za score gore u uglu slika
+		public static int coins = 0; // zbir
+		
+		
 	
 	public Game()
 	{
@@ -101,6 +108,19 @@ public class Game extends Canvas implements Runnable
 		{
 			simpleEnemy[i] = new Sprite(sheet64,i+1,3);
 		}
+		
+		
+		
+			try
+			{
+				level = ImageIO.read(getClass().getResource("/ninjalevel.png"));
+			} catch (IOException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} //samo ubaci coins
+		
+		
 		
 		
 		try
@@ -159,17 +179,39 @@ public class Game extends Canvas implements Runnable
 		}
 		Graphics g = bs.getDrawGraphics();
 		
+		
+		
+		
+		
+		
 		g.setColor(new Color(221,248,255));
 		g.fillRect(0, 0,getWidth(), getHeight());
 		
 		
 		
+		
 		g.translate(cam.getX(), cam.getY());
-		g.drawImage(bg, -getWidth()+100, 0, getWidth()+100, getHeight()+100,null);
+		g.drawImage(bg, -getWidth()+100, 0, getWidth()+100, getHeight()+120,null);
 		
 		for(int i=0;10>i;i++) 
-		g.drawImage(bg, i*(getWidth()+100), 0, getWidth()+100, getHeight()+100,null);
+		g.drawImage(bg, i*(getWidth()+100), 0, getWidth()+100, getHeight()+120,null);
+		
+		
+		
+		
+
+		
 		handler.render(g);
+		
+		
+		g.drawImage(Game.coin.getBufferedImage(), 40, 20, 50, 50, null);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
+		g.drawString("x" + coins, 95, 65);
+		
+		
+		
+		
 		g.dispose();
 		bs.show();
 		

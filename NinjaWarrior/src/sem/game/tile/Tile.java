@@ -114,6 +114,12 @@ public abstract class Tile
 	{
 		return new Rectangle(x,y,width,height);
 	}
+
+	public void die()
+	{
+		handler.tile.remove(this);
+		
+	}
 	
 	
 	
