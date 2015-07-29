@@ -18,7 +18,8 @@ import sem.game.tile.Tile;
 public class Player extends Entity
 {
 
-	
+	public boolean mleft=false;
+	public boolean mright=false;
 	private int frame =0;
 	private int frameDelay=0;
 	boolean state = false;
@@ -239,11 +240,95 @@ public class Player extends Entity
 			{
 				smallPlayerIntersect(t);
 			}
+			else if(t.getId() == Id.crate)
+			{
+				crateIntersect(t);
+			}
 		}
 		
 		
 		
 		
+		
+	}
+
+	private void crateIntersect(Tile t)
+	{
+		if(getTop().intersects(t.getBounds()))
+		{
+			setpY(0);
+			if(state)	
+				y =  t.y + 64;
+			else
+			{
+				y =  t.y + (64+36);
+				
+			}
+				
+			
+			if(jumping )
+			{
+			
+				jumping=false;
+				gravity=0.8;
+				falling=true;
+			}
+			
+		}
+		if(getBottom().intersects(t.getBounds()))
+		{
+			setpY(0);
+			
+			if(state)	
+				y = t.y - 64;
+			
+			else
+				y = t.y - 64-36;
+			
+			
+			if(falling)
+			{
+				falling=false;
+				doubleJump=false;
+				numberOfJumps=2;
+			}
+		}
+		else
+		{
+			if(!falling && !jumping)
+			{
+				gravity=0.0;
+				falling=true;
+			}
+		}
+		
+		if(getRight().intersects(t.getBounds()))
+		{
+		
+			setpX(0);
+			
+			x = t.x -64-7;
+			if(mright)
+			{
+				t.setX(t.x+4);
+			}
+			else
+			{
+				t.setpX(0);
+			}
+	
+			
+		}
+		if(getLeft().intersects(t.getBounds()))
+		{
+			
+			setpX(0);
+			x = t.x +t.width;
+			if(mleft)
+			{
+				t.setX(t.x-4);
+			}
+		}
 		
 	}
 

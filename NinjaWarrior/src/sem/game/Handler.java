@@ -4,9 +4,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import javax.swing.Box;
+
 import sem.game.entity.Entity;
 import sem.game.entity.Player;
 import sem.game.entity.enemy.SimpleEnemy;
+import sem.game.tile.Crate;
 import sem.game.tile.Coin;
 import sem.game.tile.Decoration;
 import sem.game.tile.Small;
@@ -103,6 +106,9 @@ public class Handler
 				if (red == 255 && green == 255 && blue == 0) addTile(new Coin(x*64, y*64, 64, 64, Id.coin, this));	
 				if(red==0 && green==0 && (blue==100 || blue==99)) addTile(new Water(x*64,y*64,64,64,Id.water,this,blue-85));
 				if(red==0 && green==255 && blue==240) addTile(new Small(x*64, y*64, 64, 64, Id.smallPlayer, this));
+				if(red==250 && green==150 && blue==20) addTile(new Crate(x*64, y*64, 128, 128, Id.crate, this));
+				if(red==250 && green==150 && blue==21) addTile(new Crate(x*64, y*64, 64, 64, Id.crate, this));
+				
 			}
 		}
 	}

@@ -5,22 +5,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-
-
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import sem.game.entity.Entity;
-import sem.game.entity.Player;
 import sem.game.gfx.Sprite;
 import sem.game.gfx.SpriteSheet;
 import sem.game.input.KeyInput;
-import sem.game.tile.Wall;
 
 public class Game extends Canvas implements Runnable
 {
@@ -39,6 +35,7 @@ public class Game extends Canvas implements Runnable
 	public static SpriteSheet sheetPlayer;
 	public static SpriteSheet sheet;
 	public static SpriteSheet sheet64;
+	public static Image box ;
 
 	
 	//------------- CAMERA ------------------
@@ -100,6 +97,15 @@ public class Game extends Canvas implements Runnable
 	
 	public void init()
 	{
+		
+		try
+		{
+			box = ImageIO.read(getClass().getResource("/box.png"));
+		} catch (IOException e2)
+		{
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		handler = new Handler();
 		cam = new Camera();
 		addKeyListener(new KeyInput());

@@ -58,11 +58,13 @@ public class KeyInput implements KeyListener
 					case KeyEvent.VK_LEFT:
 						en.setpX(-4);	
 						en.facing=-1;
+						((Player)en).mleft=true;
 						break;
 						
 					case KeyEvent.VK_RIGHT:
 						en.setpX(4);
 						en.facing=1;
+						((Player)en).mright=true;
 						
 						break;
 						
@@ -103,16 +105,18 @@ public class KeyInput implements KeyListener
 					case KeyEvent.VK_LEFT:
 						en.setpX(0);	
 						en.facing=-3;
+						((Player)en).mleft=false;
 						break;
 						
 					case KeyEvent.VK_RIGHT:
 						en.setpX(0);	
 						en.facing=3;
+						((Player)en).mright=false;
 						break;
 					case KeyEvent.VK_SPACE: //za pucu
 						 
 					
-						Game.handler.addTile(new Bullet(en.getX()+10, en.getY() + 35, 40, 16, Id.bullet, Game.handler, en.facing));
+						Game.handler.addTile(new Bullet(en.getX()+20, en.getY() + 35, 40, 16, Id.bullet, Game.handler, en.facing));
 						
 						
 					break;	

@@ -74,7 +74,7 @@ public class SimpleEnemy extends Entity
 			
 			Tile t = handler.tile.get(i);
 			
-			if(t.getId()==Id.wall)
+			if(t.getId()==Id.wall || t.getId()==Id.crate)
 			{
 				
 
