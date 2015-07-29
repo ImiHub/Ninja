@@ -2,15 +2,20 @@ package sem.game.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JEditorPane;
 
 import sem.game.*;
 import sem.game.entity.*;
+import sem.game.tile.Bullet;
 
 public class KeyInput implements KeyListener
 {
 
+	
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
@@ -63,6 +68,8 @@ public class KeyInput implements KeyListener
 						
 					
 						
+					
+						
 						
 				}
 			}
@@ -102,7 +109,13 @@ public class KeyInput implements KeyListener
 						en.setpX(0);	
 						en.facing=3;
 						break;
+					case KeyEvent.VK_SPACE: //za pucu
+						 
+					
+						Game.handler.addTile(new Bullet(en.getX()+10, en.getY() + 35, 40, 16, Id.bullet, Game.handler, en.facing));
 						
+						
+					break;	
 
 						
 						

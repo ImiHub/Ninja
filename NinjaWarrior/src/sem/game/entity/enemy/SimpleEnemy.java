@@ -69,8 +69,10 @@ public class SimpleEnemy extends Entity
 		
 		
 		
-		for(Tile t:handler.tile)
+		for(int i=0; handler.tile.size()>i;i++)
 		{
+			
+			Tile t = handler.tile.get(i);
 			
 			if(t.getId()==Id.wall)
 			{

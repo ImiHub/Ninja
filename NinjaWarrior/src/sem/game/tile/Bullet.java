@@ -25,7 +25,7 @@ public class Bullet extends Tile
 		try
 		{
 			if (facing == 1 || facing == 3) image = ImageIO.read(getClass().getResource("/Kunai.png"));
-			else if (facing == -1) image = ImageIO.read(getClass().getResource("/Kunai_l.png"));
+			else if (facing == -1 || facing == -3) image = ImageIO.read(getClass().getResource("/Kunai_l.png"));
 		} 
 		catch (IOException e)
 		{
@@ -44,17 +44,46 @@ public class Bullet extends Tile
 	{
 		x += pX;
 		
-	/*	for (Entity e:handler.entity)
+		tileIntersect();
+		entityIntersect();
+	}
+
+	private void entityIntersect()
+	{
+		for(int i=0; handler.entity.size()>i;i++)
 		{
-			if (e.getId() == Id.simpleEnemy)
+			Entity e = handler.entity.get(i);
+			
+			if(e.getId() == Id.simpleEnemy)
 			{
-				if (getBounds().intersects(e.getBounds())) 
+				if(e.getBounds().intersects(getBounds()))
 				{
+					this.die();
 					e.die();
-					die();
+					break;
 				}
 			}
+			
 		}
-	 */ //nesto zabada al si u zurbi :P
+		
+	}
+
+	private void tileIntersect()
+	{
+		for(int i=0; handler.tile.size()>i;i++)
+		{
+			Tile e = handler.tile.get(i);
+			
+				if(e.getId() != Id.bullet && e.getId() != Id.decoration && e.getId() != Id.coin)
+				if(e.getBounds().intersects(getBounds()))
+				{
+					this.die();
+					
+					break;
+				}
+			
+			
+		}
+		
 	}
 }

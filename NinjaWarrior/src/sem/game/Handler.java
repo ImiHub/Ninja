@@ -49,9 +49,10 @@ public class Handler
 		}
 		
 		
-		for(Tile en:tile)
+		for(int i=0;tile.size()>i;i++)
 		{
-			en.update();
+			Tile t =  tile.get(i);
+			t.update();
 		}
 		
 		
