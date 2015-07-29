@@ -1,18 +1,16 @@
 package sem.game.entity;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
 import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
-import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Tile;
 
 
@@ -22,7 +20,8 @@ public class Player extends Entity
 
 	private int frame =0;
 	private int frameDelay=0;
-	
+	boolean state = false;
+	Timer timerSmall = new Timer();
 	
 	
 	public Player(int x, int y, int width, int height, Id id, Handler h)
@@ -180,9 +179,11 @@ public class Player extends Entity
 			setpY((int)-gravity);
 			if(gravity<=0.0)
 			{
+				
 				jumping=false;
 				falling=true;
 			}
+			
 			
 		}
 		if(falling)
@@ -216,11 +217,34 @@ public class Player extends Entity
 			{
 				waterIntersect(t);
 			}
+			else if(t.getId() == Id.smallPlayer)
+			{
+				smallPlayerIntersect(t);
+			}
 		}
 		
 		
 		
 		
+		
+	}
+
+	private void smallPlayerIntersect(Tile t)
+	{
+		if(getBounds().intersects(t.getBounds()))
+		{
+			height=64;
+			width=45;
+			t.die();
+			state=true;
+			timerSmall.schedule(new TimerTask() {
+				  public void run() {
+				   state=false;
+				   height=100;
+				   width=70;
+				  }
+				}, 10000);
+		}
 		
 	}
 
@@ -251,7 +275,11 @@ public class Player extends Entity
 		if(getTop().intersects(t.getBounds()))
 		{
 			setpY(0);
-			y =  t.y + t.height+36;
+			if(state)	
+				y =  t.y + t.height;
+			else
+				y =  t.y + t.height+36;
+			
 			if(jumping )
 			{
 			
@@ -259,12 +287,16 @@ public class Player extends Entity
 				gravity=0.8;
 				falling=true;
 			}
-		
+			
 		}
 		if(getBottom().intersects(t.getBounds()))
 		{
 			setpY(0);
-			y = t.y - t.height-36;
+			
+			if(state)	
+				y = t.y - t.height;
+			else
+				y = t.y - t.height-36;
 			
 			
 			if(falling)
@@ -286,6 +318,7 @@ public class Player extends Entity
 		{
 		
 			setpX(0);
+			
 			x = t.x -t.width-7;
 			
 	
@@ -296,7 +329,7 @@ public class Player extends Entity
 			
 			setpX(0);
 			x = t.x +t.width;
-			System.out.println("levo");
+			
 		}
 		
 	}

@@ -2,6 +2,7 @@ package sem.game.tile;
 
 import java.awt.Graphics;
 
+import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
 
@@ -17,7 +18,7 @@ public class Small extends Tile
 	@Override
 	public void render(Graphics g)
 	{
-		// TODO Auto-generated method stub
+		g.drawImage(Game.smallPlayer.image, x, y, width, height, null);
 		
 	}
 

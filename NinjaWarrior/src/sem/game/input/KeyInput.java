@@ -28,16 +28,18 @@ public class KeyInput implements KeyListener
 						
 						if(en.numberOfJumps==2 && !en.jumping)
 							{
+								en.numberOfJumps--;
 								en.jumping=true;
 								en.falling=false;
 								en.gravity=8;
 							}
-						if(en.numberOfJumps==1)
+						if(en.numberOfJumps==1 && en.doubleJump)
 						{
+							en.doubleJump=false;
 							en.numberOfJumps--;
 							en.jumping=true;
 							en.falling=false;
-							en.gravity=8;
+							en.gravity=6;
 						}
 						break;
 				
@@ -80,7 +82,7 @@ public class KeyInput implements KeyListener
 				switch (key)
 				{
 					case KeyEvent.VK_UP:
-						if(en.numberOfJumps==2) en.numberOfJumps--;
+						if(en.numberOfJumps==1) en.doubleJump=true;
 						break;
 				
 						

@@ -9,6 +9,7 @@ import sem.game.entity.Player;
 import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Coin;
 import sem.game.tile.Decoration;
+import sem.game.tile.Small;
 import sem.game.tile.Tile;
 import sem.game.tile.Wall;
 import sem.game.tile.Water;
@@ -100,6 +101,7 @@ public class Handler
 				if(red==0 && green==200 && blue==200) addEntity(new SimpleEnemy(x*64, y*64, 64, 64, Id.simpleEnemy, this));
 				if (red == 255 && green == 255 && blue == 0) addTile(new Coin(x*64, y*64, 64, 64, Id.coin, this));	
 				if(red==0 && green==0 && (blue==100 || blue==99)) addTile(new Water(x*64,y*64,64,64,Id.water,this,blue-85));
+				if(red==0 && green==255 && blue==240) addTile(new Small(x*64, y*64, 64, 64, Id.smallPlayer, this));
 			}
 		}
 	}

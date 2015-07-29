@@ -68,7 +68,10 @@ public class Game extends Canvas implements Runnable
 	
 		public static Sprite coin = new Sprite(new SpriteSheet("/coins_g.png", 64, 64), 1, 1); // za score gore u uglu slika
 		public static int coins = 0; // zbir
+	
+	//-------- SMALL PALYER --------
 		
+		public static Sprite smallPlayer;
 		
 	
 	public Game()
@@ -108,6 +111,7 @@ public class Game extends Canvas implements Runnable
 		{
 			simpleEnemy[i] = new Sprite(sheet64,i+1,3);
 		}
+		smallPlayer = new Sprite(sheet64, 1, 4);
 		
 		
 		

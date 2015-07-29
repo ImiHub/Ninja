@@ -22,6 +22,7 @@ public  abstract class Entity
 	public boolean jumping;
 	public double gravity = 0;
 	public int numberOfJumps;
+	public boolean doubleJump = false;
 
 	public Entity(int x, int y, int width, int height,Id id,Handler h)
 	{
