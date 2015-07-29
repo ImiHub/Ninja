@@ -18,6 +18,7 @@ import sem.game.tile.Tile;
 public class Player extends Entity
 {
 
+	
 	private int frame =0;
 	private int frameDelay=0;
 	boolean state = false;
@@ -52,7 +53,24 @@ public class Player extends Entity
 				e.printStackTrace();
 			}
 					}
-		else if(facing==1)
+		else if(facing==-3)
+			{
+				
+				
+				try
+				{
+					
+					BufferedImage sheet;
+					sheet = ImageIO.read(getClass().getResource("/idle/idle__01"+frame+"-min.png"));
+					g.drawImage(sheet,x, y, width-15,height,null);
+
+				} catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+						}
+		else if(facing==-1)
 		{
 			try
 			{
@@ -67,7 +85,7 @@ public class Player extends Entity
 				e.printStackTrace();
 			}
 		}
-		else if(facing==0)
+		else if(facing==1)
 		{
 			try
 			{
@@ -302,6 +320,7 @@ public class Player extends Entity
 			if(falling)
 			{
 				falling=false;
+				doubleJump=false;
 				numberOfJumps=2;
 			}
 		}

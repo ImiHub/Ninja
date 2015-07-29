@@ -12,8 +12,8 @@ public class Camera
 	
 	public void update(Entity player)
 	{
-		setX(-player.getX()+Game.WIDTH*2);
-		setY(-player.getY()+Game.HEIGHT*2-50);
+		if(player.getX()>542 && player.getX()<5005) setX(-player.getX()+Game.WIDTH*2);
+		if(player.getY()<450) setY(-player.getY()+Game.HEIGHT*2-50);
 		
 	}
 

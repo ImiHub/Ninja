@@ -52,15 +52,16 @@ public class KeyInput implements KeyListener
 						
 					case KeyEvent.VK_LEFT:
 						en.setpX(-4);	
-						en.facing=1;
+						en.facing=-1;
 						break;
 						
 					case KeyEvent.VK_RIGHT:
 						en.setpX(4);
-						en.facing=0;
+						en.facing=1;
 						
 						break;
 						
+					
 						
 						
 				}
@@ -94,7 +95,7 @@ public class KeyInput implements KeyListener
 						
 					case KeyEvent.VK_LEFT:
 						en.setpX(0);	
-						en.facing=3;
+						en.facing=-3;
 						break;
 						
 					case KeyEvent.VK_RIGHT:
@@ -102,6 +103,7 @@ public class KeyInput implements KeyListener
 						en.facing=3;
 						break;
 						
+
 						
 						
 				}
