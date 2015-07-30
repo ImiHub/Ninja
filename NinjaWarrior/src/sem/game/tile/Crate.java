@@ -19,7 +19,6 @@ public class Crate extends Tile
 	public void render(Graphics g)
 	{
 		g.drawImage(Game.box, x, y, width, height, null);
-		
 	}
 
 	@Override

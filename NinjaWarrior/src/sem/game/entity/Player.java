@@ -11,36 +11,29 @@ import javax.imageio.ImageIO;
 import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
+import sem.game.tile.Teleport;
 import sem.game.tile.Tile;
-
-
 
 public class Player extends Entity
 {
-
-	public boolean mleft=false;
-	public boolean mright=false;
-	private int frame =0;
-	private int frameDelay=0;
+	public boolean mleft = false;
+	public boolean mright = false;
+	private int frame = 0;
+	private int frameDelay = 0;
 	boolean state = false;
 	Timer timerSmall = new Timer();
-	
 	
 	public Player(int x, int y, int width, int height, Id id, Handler h)
 	{
 		super(x, y, width, height, id, h);
-		System.out.println(width+" " +height);
-		facing=3;
+	//f	System.out.println(width+" " +height);
+		facing = 3;
 	}
 
-	@Override
 	public void render(Graphics g)
 	{
-		
-		if(facing==3)
-		{
-			
-			
+		if (facing == 3)
+		{		
 			try
 			{
 				
@@ -48,30 +41,28 @@ public class Player extends Entity
 				sheet = ImageIO.read(getClass().getResource("/idle/idle__00"+frame+"-min.png"));
 				g.drawImage(sheet,x, y, width-15,height,null);
 
-			} catch (IOException e)
+			} 
+			catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-					}
-		else if(facing==-3)
+		}
+		
+		else if (facing == -3)
+		{
+			try
+			{		
+				BufferedImage sheet;
+				sheet = ImageIO.read(getClass().getResource("/idle/idle__01"+frame+"-min.png"));
+				g.drawImage(sheet,x, y, width-15,height,null);
+			} 
+			catch (IOException e)
 			{
-				
-				
-				try
-				{
-					
-					BufferedImage sheet;
-					sheet = ImageIO.read(getClass().getResource("/idle/idle__01"+frame+"-min.png"));
-					g.drawImage(sheet,x, y, width-15,height,null);
-
-				} catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-						}
-		else if(facing==-1)
+				e.printStackTrace();				
+			}
+		}
+		
+		else if (facing == -1)
 		{
 			try
 			{
@@ -82,11 +73,11 @@ public class Player extends Entity
 
 			} catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		else if(facing==1)
+		
+		else if (facing == 1)
 		{
 			try
 			{
@@ -95,13 +86,14 @@ public class Player extends Entity
 				sheet = ImageIO.read(getClass().getResource("/idle/run__00"+frame+"-min.png"));
 				g.drawImage(sheet,x, y, width,height,null);
 
-			} catch (IOException e)
+			} 
+			catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		else if(facing==45)
+		
+		else if (facing == 45)
 		{
 			try
 			{
@@ -110,40 +102,32 @@ public class Player extends Entity
 				sheet = ImageIO.read(getClass().getResource("/idle/jump__00"+frame+"-min.png"));
 				g.drawImage(sheet,x, y, width,height,null);
 
-			} catch (IOException e)
+			} 
+			catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		
-		
-		
 		//g.drawImage(Game.player.getBufferedImage(), x, y, width,height,null);
-		
 	}
 
 	@Override
 	public void update()
 	{
-		x+=pX;
-		y+=pY;
-		
-		
+		x += pX;
+		y += pY;
 		
 		tileIntersect();
 		entityIntersect();
 		gravitacija();
 		animacija();
-		
-		
 	}
 
 	private void entityIntersect()
 	{
 				
-		for(int i =0 ; handler.entity.size()>i;i++)
+		for(int i = 0 ; handler.entity.size()>i;i++)
 		{
 			
 			
@@ -162,11 +146,12 @@ public class Player extends Entity
 	{
 		if(getBottom().intersects(e.getTop()))
 		{
+			System.out.println(2424);
 			e.die();
 		}
 		else if(getBounds().intersects(e.getBounds()))
 		{
-			
+			System.out.println(5555);
 					this.die();
 			
 		}
@@ -437,6 +422,36 @@ public class Player extends Entity
 		}
 		
 	}
+	
+	public void teleport()
+	{
+		
+		for(int i =0 ; handler.teleport.size()>i;i++)
+		{
+			Teleport t = handler.teleport.get(i);
+			if(t.getId()==Id.teleport)
+			{
+				if(teleportIntersect(t)) break;
+			}
+		}
+	
+	}
+	
+	private boolean teleportIntersect(Tile t)
+	{
+		if(t.x<x && t.x+t.width>x && t.y+t.height-10==y+height)
+		{
+			 
+			
+				x=((Teleport)(t)).getDestX()+15;
+				System.out.println(x);
+				return true;
+			
+		}
+		return false;
+		
+	}
+
 	
 
 }

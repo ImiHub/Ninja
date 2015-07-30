@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
 
@@ -38,9 +39,17 @@ public  abstract class Entity
 	public abstract void render(Graphics g);
 	public abstract void update();
 	
+	// gameOver, lives
 	
-	//========================GETTERS AND SETTERS ==================================================
-
+	public void die()
+	{
+		Game.lives--;
+		handler.removeEntity(this);
+		Game.showDeathScreen = true;
+		
+		if (Game.lives <= 0) Game.gameOver = true;
+	}
+	
 	public int getX()
 	{
 		return x;
@@ -121,8 +130,6 @@ public  abstract class Entity
 		this.id = id;
 	}
 	
-	
-	
 	public Rectangle getBottom()
 	{
 		return new Rectangle(x+10,y+height-5,width-20,5);
@@ -148,13 +155,4 @@ public  abstract class Entity
 	{
 		return new Rectangle(x,y,width,height);
 	}
-
-	public void die()
-	{
-		handler.removeEntity(this);
-		
-	}
-	
-	
-	
 }

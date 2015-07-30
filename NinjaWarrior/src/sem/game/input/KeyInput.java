@@ -12,10 +12,7 @@ import sem.game.entity.*;
 import sem.game.tile.Bullet;
 
 public class KeyInput implements KeyListener
-{
-
-	
-	
+{	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
@@ -50,7 +47,8 @@ public class KeyInput implements KeyListener
 				
 						
 					case KeyEvent.VK_DOWN:
-					
+						
+						((Player) en).teleport();
 						
 						break;
 						

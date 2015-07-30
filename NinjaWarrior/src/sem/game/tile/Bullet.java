@@ -1,10 +1,7 @@
 package sem.game.tile;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.util.Iterator;
 
 import sem.game.Game;
 import sem.game.Handler;
@@ -13,30 +10,24 @@ import sem.game.entity.Entity;
 
 public class Bullet extends Tile
 {
-	private BufferedImage image;
 	private int facing;
+	private int firstX;
 	
 	public Bullet(int x, int y, int width, int height, Id id, Handler h, int facing)
 	{
 		super(x, y, width, height, id, h);
 		this.facing = facing;
 		this.pX = facing * 10;
-		
-		try
-		{
-			if (facing == 1 || facing == 3) image = ImageIO.read(getClass().getResource("/Kunai.png"));
-			else if (facing == -1 || facing == -3) image = ImageIO.read(getClass().getResource("/Kunai_l.png"));
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		firstX = x;
 	}
-
+	
 	@Override
 	public void render(Graphics graphics)
 	{
-		graphics.drawImage(image,x, y, width,height,null);
+		//slika iz game
+		
+		if (facing == 1 || facing == 3) graphics.drawImage(Game.kunai_r,x, y, width,height,null);
+		else if (facing == -1 || facing == -3) graphics.drawImage(Game.kunai_l,x, y, width,height,null);
 	}
 
 	@Override
@@ -44,10 +35,33 @@ public class Bullet extends Tile
 	{
 		x += pX;
 		
-		tileIntersect();
 		entityIntersect();
+		tileIntersect();
+		dissapear();
 	}
 
+	// za umiranje
+	
+	private void entityIntersect()
+	{
+		Iterator<Entity> it = handler.entity.iterator();
+		
+		while (it.hasNext()) 
+		{
+		    Entity e = it.next();
+		    
+		    if (e.getId() == Id.simpleEnemy)
+			{
+				if (getBounds().intersects(e.getBounds())) 
+				{
+					die();
+					it.remove();
+				}
+			}
+		}
+	}
+	
+	/*
 	private void entityIntersect()
 	{
 		for(int i=0; handler.entity.size()>i;i++)
@@ -66,24 +80,26 @@ public class Bullet extends Tile
 			
 		}
 		
-	}
-
+	}*/
+	
 	private void tileIntersect()
 	{
-		for(int i=0; handler.tile.size()>i;i++)
+		for (int i = 0; handler.tile.size()>i;i++)
 		{
 			Tile e = handler.tile.get(i);
 			
-				if(e.getId() != Id.bullet && e.getId() != Id.decoration && e.getId() != Id.coin)
-				if(e.getBounds().intersects(getBounds()))
+				if(e.getId() != Id.bullet && e.getId() != Id.decoration && e.getId() != Id.coin && e.getBounds().intersects(getBounds()))
 				{
-					this.die();
-					
+					die();
 					break;
 				}
-			
-			
 		}
-		
+	}
+	
+	// da ne zivi vecno ako ne udari
+	
+	private void dissapear()
+	{
+		if (Math.abs(firstX - x) > 1000) die();
 	}
 }
