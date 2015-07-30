@@ -69,12 +69,94 @@ public class SimpleEnemy extends Entity
 		
 		
 		
+		tileIntersect();
+		entityIntersect();
+		
+		
+		
+		
+		
+		if(falling)
+		{
+			gravity+=0.1;
+			setpY((int)gravity);
+		}
+		
+		
+		if(animate)
+		{
+			frameDelay++;
+			if(frameDelay>=40)
+			{
+				frame++;
+				if(frame>=3)
+				{
+					frame=0;
+				}
+				frameDelay=0;
+			}
+		}
+	}
+
+
+
+
+	private void entityIntersect()
+	{
+
+		for(int i=0; handler.entity.size()>i;i++)
+		{
+			
+			Entity t = handler.entity.get(i);
+			
+			if(t.getId()==Id.crate )
+			{
+				
+
+				
+				if(getBottom().intersects(t.getBounds()))
+				{
+					
+					
+					
+					if(falling) falling=false;
+				}
+				else if(!falling && !jumping)
+				{
+					y-=1;
+					falling=true;
+					gravity=0.8;
+				}
+					
+				
+				if(getLeft().intersects(t.getBounds()))
+				{
+					setpX(1);
+					facing=1;
+				}
+				
+				if(getRight().intersects(t.getBounds()))
+				{
+					setpX(-1);
+					facing=0;
+				}
+			}
+		}
+		
+	}
+
+
+
+
+	private void tileIntersect()
+	{
+
 		for(int i=0; handler.tile.size()>i;i++)
 		{
 			
 			Tile t = handler.tile.get(i);
 			
-			if(t.getId()==Id.wall || t.getId()==Id.crate)
+			if(t.getId()==Id.wall )
 			{
 				
 
@@ -107,30 +189,6 @@ public class SimpleEnemy extends Entity
 			}
 		}
 		
-		
-		
-		
-		
-		if(falling)
-		{
-			gravity+=0.1;
-			setpY((int)gravity);
-		}
-		
-		
-		if(animate)
-		{
-			frameDelay++;
-			if(frameDelay>=40)
-			{
-				frame++;
-				if(frame>=3)
-				{
-					frame=0;
-				}
-				frameDelay=0;
-			}
-		}
 	}
 
 

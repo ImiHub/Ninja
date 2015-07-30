@@ -137,6 +137,10 @@ public class Player extends Entity
 				simpleEnemyIntersect(e);
 				
 			}
+			else if(e.getId() == Id.crate)
+			{
+				crateIntersect(e);
+			}
 		
 		}
 		
@@ -225,10 +229,7 @@ public class Player extends Entity
 			{
 				smallPlayerIntersect(t);
 			}
-			else if(t.getId() == Id.crate)
-			{
-				crateIntersect(t);
-			}
+			
 		}
 		
 		
@@ -237,16 +238,16 @@ public class Player extends Entity
 		
 	}
 
-	private void crateIntersect(Tile t)
+	private void crateIntersect(Entity e)
 	{
-		if(getTop().intersects(t.getBounds()))
+		if(getTop().intersects(e.getBounds()))
 		{
 			setpY(0);
 			if(state)	
-				y =  t.y + 64;
+				y =  e.y + 64;
 			else
 			{
-				y =  t.y + (64+36);
+				y =  e.y + (64+36);
 				
 			}
 				
@@ -260,15 +261,15 @@ public class Player extends Entity
 			}
 			
 		}
-		if(getBottom().intersects(t.getBounds()))
+		if(getBottom().intersects(e.getBounds()))
 		{
 			setpY(0);
 			
 			if(state)	
-				y = t.y - 64;
+				y = e.y - 64;
 			
 			else
-				y = t.y - 64-36;
+				y = e.y - 64-36;
 			
 			
 			if(falling)
@@ -287,34 +288,142 @@ public class Player extends Entity
 			}
 		}
 		
-		if(getRight().intersects(t.getBounds()))
+		if(getRight().intersects(e.getBounds()))
 		{
 		
 			setpX(0);
 			
-			x = t.x -64-7;
+			x = e.x -64-7;
 			if(mright)
 			{
-				t.setX(t.x+4);
+				if(checkCrateRight(e))
+				e.setX(e.x+4);
 			}
 			else
 			{
-				t.setpX(0);
+				e.setpX(0);
 			}
 	
 			
 		}
-		if(getLeft().intersects(t.getBounds()))
+		if(getLeft().intersects(e.getBounds()))
 		{
 			
 			setpX(0);
-			x = t.x +t.width;
+			x = e.x +e.width;
 			if(mleft)
 			{
-				t.setX(t.x-4);
+				if(checkCrateLeft(e))
+				e.setX(e.x-4);
 			}
 		}
 		
+	}
+
+	private boolean checkCrateLeft(Entity e)
+	{
+		if(checkCrateTile(e,false)) return false;
+		if(checkCrateEntity(e,false)) return false;
+		
+		return true;
+	}
+
+	private boolean checkCrateRight(Entity e)
+	{
+		
+		
+		if(checkCrateTile(e,true)) return false;
+		if(checkCrateEntity(e,true)) return false;
+		
+		return true;
+		
+		
+		
+	}
+
+	private boolean checkCrateEntity(Entity ee,Boolean side)
+	{
+		for(int i=0;handler.entity.size()>i;i++)
+		{
+			Entity e = handler.entity.get(i);
+			if(e.getId() != Id.player )
+			{
+				if(e.getId()==Id.crate)
+				{
+					if(((Crate)e).number != ((Crate)ee).number)
+					{
+					
+						if(side)
+						{
+							if(e.getBounds().intersects(((Crate)ee).getRightCrate()))
+							{
+								return true;
+							}
+						}
+						else
+						{
+							if(e.getBounds().intersects(((Crate)ee).getLeftCrate()))
+							{
+								
+								return true;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(side)
+					{
+						if(e.getBounds().intersects(((Crate)ee).getRightCrate()))
+						{
+							return true;
+						}
+					}
+					else
+					{
+						if(e.getBounds().intersects(((Crate)ee).getLeftCrate()))
+						{
+							
+							return true;
+						}
+					}
+				}
+				
+				
+			}
+		
+		}
+		
+		
+		return false;
+	}
+
+	private boolean checkCrateTile(Entity ee,boolean side)
+	{
+		for(int i=0;handler.tile.size()>i;i++)
+		{
+			Tile e = handler.tile.get(i);
+			if(e.getId()!= Id.decoration && e.getId()!=Id.coin )
+			{
+				if(side)
+				{
+					if(e.getBounds().intersects(((Crate)ee).getRightCrate()))
+					{
+						return true;
+					}
+				}
+				else
+				{
+					if(e.getBounds().intersects(((Crate)ee).getLeftCrate()))
+					{
+						System.out.println(2222);
+						return true;
+					}
+				}
+			}
+			
+		}
+		return false;
 	}
 
 	private void smallPlayerIntersect(Tile t)
