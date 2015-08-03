@@ -41,7 +41,7 @@ public class Crate extends Entity
 		{
 			Tile t= handler.tile.get(i);
 			
-			if(t.getId() != Id.smallPlayer  && t.getId()!= Id.decoration && t.getId() != Id.coin )
+			if(t.getId() != Id.smallPlayer  && t.getId()!= Id.decoration && t.getId() != Id.coin && t.getId() != Id.invBorder )
 			{
 				if(getBottom().intersects(t.getBounds()))
 				{

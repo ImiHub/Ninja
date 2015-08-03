@@ -10,6 +10,7 @@ import sem.game.entity.Player;
 import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Coin;
 import sem.game.tile.Decoration;
+import sem.game.tile.InvBorder;
 import sem.game.tile.KunaiAmo;
 import sem.game.tile.Small;
 import sem.game.tile.Teleport;
@@ -97,6 +98,8 @@ public class Handler
 				
 				if (red == 250 && green == 150 && blue == 20) addEntity(new Crate(x*64, y*64, 128, 128, Id.crate, this));
 				if (red == 250 && green == 150 && blue == 21) addEntity(new Crate(x*64, y*64, 64, 64, Id.crate, this));
+
+				if(red == 105 && green == 115 && blue == 105) addTile(new InvBorder(x*64+30, y*64, 64-50, 64, Id.invBorder, this)); 
 				
 			}
 		}

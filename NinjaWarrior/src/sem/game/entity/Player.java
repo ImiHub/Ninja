@@ -403,7 +403,7 @@ public class Player extends Entity
 		for(int i=0;handler.tile.size()>i;i++)
 		{
 			Tile e = handler.tile.get(i);
-			if(e.getId()!= Id.decoration && e.getId()!=Id.coin )
+			if(e.getId()!= Id.decoration && e.getId()!=Id.coin && e.getId()!= Id.invBorder  )
 			{
 				if(side)
 				{

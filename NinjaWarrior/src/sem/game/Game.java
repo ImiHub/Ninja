@@ -97,6 +97,7 @@ public class Game extends Canvas implements Runnable
 	//-------- SMALL PALYER --------
 		
 		public static Sprite smallPlayer;
+		public static Sprite invBorder;
 		
 	//-------- CONSTRUCTOR ---------	
 	
@@ -138,6 +139,7 @@ public class Game extends Canvas implements Runnable
 		}
 		
 		smallPlayer = new Sprite(sheet64, 1, 4);
+		invBorder = new Sprite(sheet64, 16, 1);
 		
 		coinsSheet = new SpriteSheet("/coins_g.png", 64, 64); //coins novo 
 		coin = new Sprite(coinsSheet, 1, 1);
@@ -159,7 +161,7 @@ public class Game extends Canvas implements Runnable
 		{
 			kunai_r = ImageIO.read(getClass().getResource("/Kunai.png"));
 			kunai_l = ImageIO.read(getClass().getResource("/Kunai_l.png"));
-			kunai_coin = ImageIO.read(getClass().getResource("/kunai_coin.jpg")); // novo
+			kunai_coin = ImageIO.read(getClass().getResource("/kunai_coin.gif")); // novo
 		} 
 		
 		catch (IOException e2)
@@ -257,10 +259,10 @@ public class Game extends Canvas implements Runnable
 		
 		if (playing && !gameOver) g.translate(cam.getX(), cam.getY());
 		
-		g.drawImage(bg, -getWidth()+400, 0, getWidth()+400, getHeight()+520,null);
+		g.drawImage(bg, -getWidth()+400, 530, getWidth()+400, getHeight()+520,null);
 		
-		for(int i=0;10>i;i++) 
-		g.drawImage(bg, i*(getWidth()+400), 0, getWidth()+400, getHeight()+520,null);
+		for(int i=0;30>i;i++) 
+		g.drawImage(bg, i*(getWidth()+400), 530, getWidth()+400, getHeight()+520,null);
 		
 		if (playing) handler.render(g);
 		else launcher.render(g);
@@ -362,7 +364,7 @@ public class Game extends Canvas implements Runnable
 			if(System.currentTimeMillis()-timer>1000)
 			{
 				timer += 1000;
-			//	System.out.println(frames + " FPS "+updates+" UPS");
+				System.out.println(frames + " FPS "+updates+" UPS");
 				frames = 0;
 				updates = 0;
 			}
