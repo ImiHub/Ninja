@@ -32,6 +32,9 @@ public class KeyInput implements KeyListener
 							{
 								en.numberOfJumps--;
 								en.jumping=true;
+								if(en.facing == -1 || en.facing == -3) en.facing=-4;
+								else en.facing=4;
+								
 								en.falling=false;
 								en.gravity=8;
 							}
@@ -40,6 +43,9 @@ public class KeyInput implements KeyListener
 							en.doubleJump=false;
 							en.numberOfJumps--;
 							en.jumping=true;
+							if(en.facing == -1 || en.facing == -3) en.facing=-4;
+							else en.facing=4;
+							
 							en.falling=false;
 							en.gravity=6;
 						}
@@ -130,8 +136,8 @@ public class KeyInput implements KeyListener
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+	    
+			
 	}
 
 	

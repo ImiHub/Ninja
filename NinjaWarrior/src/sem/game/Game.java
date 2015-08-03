@@ -57,6 +57,7 @@ public class Game extends Canvas implements Runnable
 	//------------- SPRITE -------------
 		
 		public static Sprite player[] = new Sprite[30];
+		public static BufferedImage playerJumpRight[] = new BufferedImage[10];
 		public static Sprite grass;
 		public static Sprite[] simpleEnemy;
 	
@@ -137,7 +138,16 @@ public class Game extends Canvas implements Runnable
 		{
 			simpleEnemy[i] = new Sprite(sheet64,i+1,3);
 		}
-		
+		for(int i=0; 10>i;i++)
+		{
+		    try {
+			playerJumpRight[i] = ImageIO.read(getClass().getResource("/idle/jump__00"+i+"-min.png"));
+		   
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
+		}
 		smallPlayer = new Sprite(sheet64, 1, 4);
 		invBorder = new Sprite(sheet64, 16, 1);
 		

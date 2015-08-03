@@ -19,6 +19,7 @@ public class Player extends Entity
 	public boolean mleft = false;
 	public boolean mright = false;
 	private int frame = 0;
+	int oldFacing = 0;
 	private int frameDelay = 0;
 	boolean state = false;
 	Timer timerSmall = new Timer();
@@ -34,6 +35,7 @@ public class Player extends Entity
 	{
 		if (facing == 3)
 		{		
+		    oldFacing=3;
 			try
 			{
 				
@@ -50,6 +52,7 @@ public class Player extends Entity
 		
 		else if (facing == -3)
 		{
+		    oldFacing=-3;
 			try
 			{		
 				BufferedImage sheet;
@@ -64,6 +67,7 @@ public class Player extends Entity
 		
 		else if (facing == -1)
 		{
+		    oldFacing=-1;
 			try
 			{
 				
@@ -79,6 +83,7 @@ public class Player extends Entity
 		
 		else if (facing == 1)
 		{
+		    oldFacing=1;
 			try
 			{
 				
@@ -91,6 +96,29 @@ public class Player extends Entity
 			{
 				e.printStackTrace();
 			}
+		}
+		
+		else if (facing == -4)
+		{
+			
+				g.drawImage(Game.playerJumpRight[frame],x, y, width,height,null);
+		    		if(frame==9)
+		    		{
+		    		    if(oldFacing==-3) facing=-3;
+		    		    else facing=-1;
+		    		}
+			
+		}
+		else if (facing == 4)
+		{
+		    			
+				g.drawImage(Game.playerJumpRight[frame],x, y, width,height,null);
+				if(frame==9)
+		    		{
+		    		    if(oldFacing==3) facing=3;
+		    		    else facing=1;
+		    		}
+			
 		}
 		
 		else if (facing == 45)
@@ -165,6 +193,7 @@ public class Player extends Entity
 	private void animacija()
 	{
 		frameDelay++;
+		
 		if(frameDelay>=6)
 		{
 			frame++;
