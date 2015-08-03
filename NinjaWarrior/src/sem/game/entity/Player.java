@@ -527,6 +527,7 @@ public class Player extends Entity
 			
 			setpX(0);
 			x = t.x +t.width;
+			y = t.y + t.height-height; //ovo
 			
 		}
 		
@@ -550,10 +551,9 @@ public class Player extends Entity
 	{
 		if(t.x<x && t.x+t.width>x && t.y+t.height-10==y+height)
 		{
-			 
-			
-				x=((Teleport)(t)).getDestX()+15;
-				System.out.println(x);
+				x = ((Teleport)(t)).getDestX()+15;
+				y = ((Teleport)(t)).getDestY()+15; //ovo
+				System.out.println("tel dest = " +  x + "  " + y);
 				return true;
 			
 		}

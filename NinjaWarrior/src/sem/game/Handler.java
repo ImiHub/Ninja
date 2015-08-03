@@ -10,6 +10,7 @@ import sem.game.entity.Player;
 import sem.game.entity.enemy.SimpleEnemy;
 import sem.game.tile.Coin;
 import sem.game.tile.Decoration;
+import sem.game.tile.KunaiAmo;
 import sem.game.tile.Small;
 import sem.game.tile.Teleport;
 import sem.game.tile.Tile;
@@ -72,19 +73,23 @@ public class Handler
 				if (red == 255 && green == 255 && blue == 0) addTile(new Coin(x*64, y*64, 64, 64, Id.coin, this));	
 				if (red == 0 && green == 0 && (blue == 100 || blue == 99)) addTile(new Water(x*64,y*64,64,64,Id.water,this,blue-85));
 				if (red == 0 && green == 255 && blue == 240) addTile(new Small(x*64, y*64, 64, 64, Id.smallPlayer, this));
+				
+				if (red == 255 && green == 0 && blue == 0) addTile(new KunaiAmo(x*64, y*64, 100, 100, Id.kunai_coin, this)); // novo, ostavi pod kom do daljneg
+			//	if (red == 255 && green == 150 && blue == 255) addEntity(new TeleportButton(x*64, y*64, 64, 64, Id.teleportButton, this)); //ostavi pod kom do daljneg
+				
 				if (red == 250 && green == 150 && blue == 20) addEntity(new Crate(x*64, y*64, 128, 128, Id.crate, this));
 				if (red == 250 && green == 150 && blue == 21) addEntity(new Crate(x*64, y*64, 64, 64, Id.crate, this));
-				if (red == 250 && green == 150 && blue == 21) System.out.println("radi");
+				
 			}
 		}
 		
-		Teleport t[]=new Teleport[2];//ovo
+		Teleport t[]=new Teleport[2];
 		int i=0;
 		
 		for(int y=0;y<height;y++)
 			for(int x=0; x<width;x++)
 			{
-				int pixel  =level.getRGB(x, y);
+				int pixel  = level.getRGB(x, y);
 				int red = (pixel>>16) & 0xff;
 				int green = (pixel>>8) & 0xff;
 				int blue = (pixel) & 0xff;
@@ -93,7 +98,6 @@ public class Handler
 					t[i]=new Teleport(x*64, y*64+10-64, 90, 128, Id.teleport, this);
 					addTile(t[i]);
 					addTeleport(t[i++]);
-					
 				}
 			}
 		
@@ -101,7 +105,6 @@ public class Handler
 		t[0].setDestY(t[1].y);
 		t[1].setDestX(t[0].x);
 		t[1].setDestY(t[0].y);
-
 	}
 	
 	public void clearLevel()

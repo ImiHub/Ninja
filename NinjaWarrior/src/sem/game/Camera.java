@@ -14,8 +14,8 @@ public class Camera
 		xPlayer = player.getX(); 
 		yPlayer = player.getY(); 
 		
-		if (player.getX() > 542 && player.getX() < 5005) setX(-player.getX() + Game.WIDTH * 2);
-		if (player.getY() < 450) setY(-player.getY() + Game.HEIGHT * 2 - 50);
+		if (player.getX() > 542) setX(-player.getX() + Game.WIDTH * 2);
+		if (player.getY() < 3000) setY(-player.getY() + Game.HEIGHT * 2 - 50); //ovdee
 	}
 
 	public int getX()

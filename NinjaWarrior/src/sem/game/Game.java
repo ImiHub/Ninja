@@ -41,6 +41,7 @@ public class Game extends Canvas implements Runnable
 		public static SpriteSheet sheetPlayer;
 		public static SpriteSheet sheet;
 		public static SpriteSheet sheet64;
+		public static SpriteSheet coinsSheet;
 		
 	//------------- IMAGE -------------
 		
@@ -75,10 +76,11 @@ public class Game extends Canvas implements Runnable
 		
 		public static BufferedImage kunai_l;
 		public static BufferedImage kunai_r;
+		public static BufferedImage kunai_coin;
 		
 	//----------  COINS, LIVES, GAME OVER AND MENU  ------------
 	
-		public static Sprite coin = new Sprite(new SpriteSheet("/coins_g.png", 64, 64), 1, 1);
+		public static Sprite coin;
 		public static int coins = 0; 
 		
 		public static int lives = 3;
@@ -137,6 +139,9 @@ public class Game extends Canvas implements Runnable
 		
 		smallPlayer = new Sprite(sheet64, 1, 4);
 		
+		coinsSheet = new SpriteSheet("/coins_g.png", 64, 64); //coins novo 
+		coin = new Sprite(coinsSheet, 1, 1);
+		
 		// teleport slika
 		
 		try
@@ -154,6 +159,7 @@ public class Game extends Canvas implements Runnable
 		{
 			kunai_r = ImageIO.read(getClass().getResource("/Kunai.png"));
 			kunai_l = ImageIO.read(getClass().getResource("/Kunai_l.png"));
+			kunai_coin = ImageIO.read(getClass().getResource("/kunai_coin.png")); // novo
 		} 
 		
 		catch (IOException e2)
@@ -161,6 +167,8 @@ public class Game extends Canvas implements Runnable
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
+		
+		
 		
 		// level slike
 		
@@ -249,10 +257,10 @@ public class Game extends Canvas implements Runnable
 		
 		if (playing && !gameOver) g.translate(cam.getX(), cam.getY());
 		
-		g.drawImage(bg, -getWidth()+100, 0, getWidth()+100, getHeight()+120,null);
+		g.drawImage(bg, -getWidth()+400, 0, getWidth()+400, getHeight()+520,null);
 		
 		for(int i=0;10>i;i++) 
-		g.drawImage(bg, i*(getWidth()+100), 0, getWidth()+100, getHeight()+120,null);
+		g.drawImage(bg, i*(getWidth()+400), 0, getWidth()+400, getHeight()+520,null);
 		
 		if (playing) handler.render(g);
 		else launcher.render(g);
