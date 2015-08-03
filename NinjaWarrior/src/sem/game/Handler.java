@@ -30,9 +30,21 @@ public class Handler
 	
 	public void render(Graphics g)
 	{
-		for(int i = 0; i < tile.size(); i++) tile.get(i).render(g);
+		for(int i = 0; i < tile.size(); i++)
+		    {
+		    	int xx = Camera.xPlayer;
+		    	int x = tile.get(i).getX();
+		    	if(x>= xx-1000 && x<= xx+1000)
+		    	tile.get(i).render(g);
+		    }
 		
-		for(int i = 0; i < entity.size(); i++) entity.get(i).render(g);
+		for(int i = 0; i < entity.size(); i++)
+		    {
+		    	int xx = Camera.xPlayer;
+		    	int x = entity.get(i).getX();
+		    	if(x>= xx-1000 && x<= xx+1000)
+		    	entity.get(i).render(g);
+		    }
 	}
 	
 	public void update()
@@ -40,12 +52,18 @@ public class Handler
 		for (int i=0;entity.size()>i;i++)
 		{
 			Entity en  = entity.get(i);
+			int xx = Camera.xPlayer;
+		    	int x = en.getX();
+		    	if(x>= xx-1000 && x<= xx+1000)
 			en.update();
 		}
 		
 		for(int i=0;tile.size()>i;i++)
 		{
 			Tile t =  tile.get(i);
+			int xx = Camera.xPlayer;
+		    	int x = t.getX();
+		    	if(x>= xx-1000 && x<= xx+1000)
 			t.update();
 		}
 	}

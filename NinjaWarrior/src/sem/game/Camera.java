@@ -6,8 +6,8 @@ public class Camera
 {
 	public int x;
 	public int y;
-	public int xPlayer; //deathScreen
-	public int yPlayer; //deathScreen
+	public static int xPlayer; //deathScreen
+	public static int yPlayer; //deathScreen
 	
 	public void update(Entity player)
 	{

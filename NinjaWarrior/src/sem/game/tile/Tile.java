@@ -120,6 +120,10 @@ public abstract class Tile
 		handler.tile.remove(this);
 		
 	}
+
+	public int getX() {
+	    return x;
+	}
 	
 	
 	

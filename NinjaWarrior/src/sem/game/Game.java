@@ -159,7 +159,7 @@ public class Game extends Canvas implements Runnable
 		{
 			kunai_r = ImageIO.read(getClass().getResource("/Kunai.png"));
 			kunai_l = ImageIO.read(getClass().getResource("/Kunai_l.png"));
-			kunai_coin = ImageIO.read(getClass().getResource("/kunai_coin.png")); // novo
+			kunai_coin = ImageIO.read(getClass().getResource("/kunai_coin.jpg")); // novo
 		} 
 		
 		catch (IOException e2)
