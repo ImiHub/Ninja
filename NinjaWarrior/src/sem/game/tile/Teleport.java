@@ -6,32 +6,17 @@ import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
 
-/*
- * Game:
- * 39
- * 112
- * 
- * Handler:
- * 26
- * 76
- * 89
- * 129-151
- * 
- * KeyInput:
- * 54
- * 
- * Player:
- * 257-284
- */
 
 public class Teleport extends Tile
 {
 	private int destX;
 	private int destY;
+	private boolean active;
 	
 	public Teleport(int x, int y, int width, int height, Id id, Handler h)
 	{
 		super(x, y, width, height, id, h);
+		active=false;
 	}
 
 	@Override
@@ -66,4 +51,16 @@ public class Teleport extends Tile
 	{
 		this.destY = destY;
 	}
+
+	public boolean isActive()
+	{
+		return active;
+	}
+
+	public void setActive(boolean active)
+	{
+		this.active = active;
+	}
+	
+	
 }

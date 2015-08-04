@@ -12,6 +12,7 @@ import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
 import sem.game.tile.Teleport;
+import sem.game.tile.TeleportButton;
 import sem.game.tile.Tile;
 
 public class Player extends Entity
@@ -597,6 +598,18 @@ public class Player extends Entity
 		
 	}
 
-	
+	private boolean buttonIntersect(Tile t)
+	{
+		if(t.x<x && t.x+t.width>x && t.y+t.height==y+height)
+		{
+			((TeleportButton) t).setPressed(true);
+			return true;
+		}
+		else
+		{
+			((TeleportButton) t).setPressed(false);
+			return false;
+		}
+	}
 
 }
