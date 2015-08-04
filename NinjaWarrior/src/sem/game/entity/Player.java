@@ -23,6 +23,7 @@ public class Player extends Entity
 	private int frameDelay = 0;
 	boolean state = false;
 	Timer timerSmall = new Timer();
+	public boolean small=false;
 	
 	public Player(int x, int y, int width, int height, Id id, Handler h)
 	{
@@ -459,19 +460,25 @@ public class Player extends Entity
 	{
 		if(getBounds().intersects(t.getBounds()))
 		{
-			height=64;
-			width=45;
 			t.die();
-			state=true;
-			timerSmall.schedule(new TimerTask() {
-				  public void run() {
-				   state=false;
-				   height=100;
-				   width=70;
-				  }
-				}, 10000);
+			small=true;
 		}
 		
+	}
+	
+	public void small()
+	{
+		small=false;
+		height=64;
+		width=45;
+		state=true;
+		timerSmall.schedule(new TimerTask() {
+			  public void run() {
+			   state=false;
+			   height=100;
+			   width=70;
+			  }
+			}, 10000);
 	}
 
 	private void waterIntersect(Tile t)

@@ -72,7 +72,11 @@ public class KeyInput implements KeyListener
 						
 						break;
 						
-					
+					case KeyEvent.VK_M:
+						
+						if(((Player)en).small) ((Player)en).small();
+						//ovde ispitujemo koja moc je aktivna
+						break;
 						
 					
 						
