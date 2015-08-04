@@ -6,6 +6,7 @@ public class Camera
 {
 	public int x;
 	public int y;
+	public int pomY;
 	public static int xPlayer; //deathScreen
 	public static int yPlayer; //deathScreen
 	
@@ -15,7 +16,11 @@ public class Camera
 		yPlayer = player.getY(); 
 		
 		if (player.getX() > 542) setX(-player.getX() + Game.WIDTH * 2);
-		if (player.getY() < 1250) setY(-player.getY() + Game.HEIGHT * 2 - 50);
+		if (player.getY() < 1250)
+		    setY(-player.getY() + Game.HEIGHT * 2 - 50);
+	
+		else
+		    pomY=-yPlayer+1250;
 	}
 
 	public int getX()
