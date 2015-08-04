@@ -123,14 +123,14 @@ public class KeyInput implements KeyListener
 						break;
 					case KeyEvent.VK_SPACE: //za pucu
 						 
-					
-						Game.handler.addTile(new Bullet(en.getX()+20, en.getY() + 35, 40, 16, Id.bullet, Game.handler, en.facing));
-						
+						if (((Player)en).isShooting() && ((Player)en).getMunition() > 0) 
+						{
+							Game.handler.addTile(new Bullet(en.getX()+20, en.getY() + 35, 40, 16, Id.bullet, Game.handler, en.facing));
+							((Player)en).setMunition(((Player)en).getMunition()-1);
+							if (((Player)en).getMunition() == 0) ((Player)en).setShooting(false);
+						}
 						
 					break;	
-
-						
-						
 				}
 			}
 		}

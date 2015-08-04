@@ -266,6 +266,10 @@ public class Player extends Entity
 			{
 				smallPlayerIntersect(t);
 			}
+			else if(t.getId() == Id.kunai_coin)
+			{
+				kunaiAmoIntersect(t);
+			}
 			
 		}
 		
@@ -504,7 +508,6 @@ public class Player extends Entity
 		{
 				Game.coins++;
 				tt.die();
-				
 		}
 		
 	}
@@ -615,6 +618,16 @@ public class Player extends Entity
 		{
 			((TeleportButton) t).setPressed(false);
 			return false;
+		}
+	}
+	
+	private void kunaiAmoIntersect(Tile t)
+	{
+		if (getBounds().intersects(t.getBounds()))
+		{
+				shooting = true;
+				munition = 10;
+				t.die();
 		}
 	}
 	
