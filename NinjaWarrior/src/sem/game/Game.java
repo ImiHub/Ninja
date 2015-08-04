@@ -297,16 +297,13 @@ public class Game extends Canvas implements Runnable
 			if (cam.xPlayer > 560) g.drawString("x" + coins, cam.xPlayer - 440,  cam.yPlayer - 210 + cam.pomY);
 			else g.drawString("x" + coins, 130,  cam.yPlayer - 210 + cam.pomY);
 			
-			
-			
-			if (cam.xPlayer > 560) g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 370,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
-			else g.drawImage(Game.smallPlayer.getBufferedImage(), 200,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
+			if (cam.xPlayer > 560) g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 340,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
+			else g.drawImage(Game.smallPlayer.getBufferedImage(), 230,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
 				
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 55));
-			if (cam.xPlayer > 560) g.drawString("x" + coins, cam.xPlayer - 320,  cam.yPlayer - 210 + cam.pomY);
-			else g.drawString("x" + coins, 250,  cam.yPlayer - 210 + cam.pomY);
-			
+			if (cam.xPlayer > 560) g.drawString("x" + lives, cam.xPlayer - 290,  cam.yPlayer - 210 + cam.pomY);
+			else g.drawString("x" + lives, 280,  cam.yPlayer - 210 + cam.pomY);
 		}
 		
 		if (showDeathScreen)
