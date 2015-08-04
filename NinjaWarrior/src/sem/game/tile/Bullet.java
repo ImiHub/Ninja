@@ -7,6 +7,7 @@ import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
 import sem.game.entity.Entity;
+import sem.game.entity.enemy.SimpleEnemy;
 
 public class Bullet extends Tile
 {
@@ -24,8 +25,6 @@ public class Bullet extends Tile
 	@Override
 	public void render(Graphics graphics)
 	{
-		//slika iz game
-		
 		if (facing == 1 || facing == 3) graphics.drawImage(Game.kunai_r,x, y, width,height,null);
 		else if (facing == -1 || facing == -3) graphics.drawImage(Game.kunai_l,x, y, width,height,null);
 	}
@@ -54,6 +53,7 @@ public class Bullet extends Tile
 			{
 				if (getBounds().intersects(e.getBounds())) 
 				{
+					((SimpleEnemy)e).setHealth(0); //novooo
 					die();
 					it.remove();
 				}
@@ -88,7 +88,7 @@ public class Bullet extends Tile
 		{
 			Tile e = handler.tile.get(i);
 			
-				if(e.getId() != Id.bullet && e.getId() != Id.decoration && e.getId() != Id.coin && e.getBounds().intersects(getBounds()))
+				if(e.getId() != Id.bullet && e.getId() != Id.decoration && e.getId() != Id.coin && e.getId() != Id.teleport && e.getBounds().intersects(getBounds()))
 				{
 					die();
 					break;

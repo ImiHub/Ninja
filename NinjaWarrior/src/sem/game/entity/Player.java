@@ -26,6 +26,12 @@ public class Player extends Entity
 	Timer timerSmall = new Timer();
 	public boolean small=false;
 	
+	private int munition = 0; // novo
+	private boolean shooting = false; //novo
+	
+	private int health = 100; //novo + geteri i seteri za njih dole
+	
+	
 	public Player(int x, int y, int width, int height, Id id, Handler h)
 	{
 		super(x, y, width, height, id, h);
@@ -186,8 +192,8 @@ public class Player extends Entity
 		else if(getBounds().intersects(e.getBounds()))
 		{
 			System.out.println(5555);
-					this.die();
-			
+			setHealth(0); // novo
+			this.die();
 		}
 		
 	}
@@ -611,5 +617,28 @@ public class Player extends Entity
 			return false;
 		}
 	}
+	
+	public int getMunition() {
+		return munition;
+	}
 
+	public void setMunition(int munition) {
+		this.munition = munition;
+	}
+
+	public boolean isShooting() {
+		return shooting;
+	}
+
+	public void setShooting(boolean shooting) {
+		this.shooting = shooting;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
 }

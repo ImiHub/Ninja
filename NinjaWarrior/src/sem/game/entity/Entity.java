@@ -7,10 +7,10 @@ import java.awt.Rectangle;
 import sem.game.Game;
 import sem.game.Handler;
 import sem.game.Id;
+import sem.game.entity.enemy.SimpleEnemy;
 
 public  abstract class Entity
 {
-	
 	public  int x,y;
 	public int width,height;
 	public int pX,pY;
@@ -40,14 +40,25 @@ public  abstract class Entity
 	public abstract void update();
 	
 	// gameOver, lives
+	// novoooo, sredjeno za health
 	
 	public void die()
 	{
-		Game.lives--;
-		handler.removeEntity(this);
-		Game.showDeathScreen = true;
-		
-		if (Game.lives <= 0) Game.gameOver = true;
+		if (this instanceof Player)
+		{
+			if (((Player)this).getHealth() == 0)
+			{
+				Game.lives--;
+				handler.removeEntity(this);
+				Game.showDeathScreen = true;
+				
+				if (Game.lives <= 0) Game.gameOver = true;
+			}
+		}
+		else if (this instanceof SimpleEnemy)
+		{
+			if (((SimpleEnemy)this).getHealth() == 0) handler.removeEntity(this);
+		}
 	}
 	
 	public int getX()

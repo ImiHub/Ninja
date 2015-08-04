@@ -18,14 +18,13 @@ public class Launcher
 	{
 		buttons = new Button[2];
 		
-		buttons[0] = new Button(100, 100, 400, 100, "New Game");
-		buttons[1] = new Button(200, 200, 400, 100, "Exit Game");
+		buttons[0] = new Button(Game.WIDTH * Game.SCALE/3, Game.HEIGHT * Game.SCALE/4, 400, 100, "New Game");
+		buttons[1] = new Button(Game.WIDTH * Game.SCALE/3, Game.HEIGHT * Game.SCALE/2, 400, 100, "Exit Game");
 	}
 
 	public void render (Graphics graphics)
 	{
-		graphics.setColor(new Color(255, 20, 47));
-		graphics.fillRect(0, 0, Game.WIDTH * Game.SCALE + 10, Game.HEIGHT * Game.SCALE + 10);
+		graphics.drawImage(Game.deathScreenBackground, 0, 0, Game.WIDTH * Game.SCALE + 10, Game.HEIGHT * Game.SCALE + 10, null);
 		
 		for (int i = 0; i < buttons.length; i++) buttons[i].render(graphics);
 	}

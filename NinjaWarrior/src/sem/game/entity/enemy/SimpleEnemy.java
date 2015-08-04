@@ -9,15 +9,15 @@ import sem.game.Id;
 import sem.game.entity.Entity;
 import sem.game.tile.Tile;
 
-
-
 public class SimpleEnemy extends Entity
 {
-	
 	private int frame = 0;
 	private int frameDelay = 0;
-	private boolean animate =true;
+	private boolean animate = true;
 	private Random rand = new Random();
+	
+	private boolean shooting = false; //novo
+	private int health; // novo + dole geteri i seteri za ove dve
 
 	public SimpleEnemy(int x, int y, int width, int height, Id id,
 			Handler h)
@@ -36,9 +36,6 @@ public class SimpleEnemy extends Entity
 		}
 	}
 	
-	
-	
-
 	@Override
 	public void render(Graphics g)
 	{
@@ -109,15 +106,11 @@ public class SimpleEnemy extends Entity
 			
 			Entity t = handler.entity.get(i);
 			
-			if(t.getId()==Id.crate )
+			if (t.getId()==Id.crate)
 			{
-				
-
 				
 				if(getBottom().intersects(t.getBounds()))
 				{
-					
-					
 					
 					if(falling) falling=false;
 				}
@@ -158,14 +151,8 @@ public class SimpleEnemy extends Entity
 			
 			if(t.getId()==Id.wall )
 			{
-				
-
-				
 				if(getBottom().intersects(t.getBounds()))
 				{
-					
-					
-					
 					if(falling) falling=false;
 				}
 				else if(!falling && !jumping)
@@ -191,8 +178,21 @@ public class SimpleEnemy extends Entity
 		
 	}
 
-
-
-
+	//novoovoooo
 	
+	public boolean isShooting() {
+		return shooting;
+	}
+
+	public void setShooting(boolean shooting) {
+		this.shooting = shooting;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}	
 }

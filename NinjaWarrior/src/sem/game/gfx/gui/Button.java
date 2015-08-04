@@ -28,7 +28,7 @@ public class Button extends JButton
 	
 	public void render (Graphics graphics)
 	{
-		graphics.setColor(new Color(200, 112, 7));
+		graphics.setColor(new Color(13, 39, 20)); // novo
 		graphics.setFont(new Font("Century Gothic", Font.TRUETYPE_FONT, 50));
 	//	graphics.drawRect(getX() + 50, getY(), getWidth() - 250, getHeight());
 		
@@ -42,10 +42,15 @@ public class Button extends JButton
 		graphics.drawString(getLabel(), getX() + stringX, getY() + stringY);
 	}
 	
+	// novoooo, sredjen mis i dugmad
+	
 	public void triggerEvent()
 	{
-		if (getLabel().equals("New Game")) Game.newGame();
-		else if (getLabel().equals("Exit Game")) System.exit(0);
+		if (!Game.playing || Game.gameOver) 
+		{
+			if (getLabel().equals("New Game")) Game.newGame();
+			else if (getLabel().equals("Exit Game")) System.exit(0);	
+		}
 	}
 
 	public int getX()

@@ -9,18 +9,15 @@ import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import sem.game.entity.Entity;
-import sem.game.entity.Player;
 import sem.game.gfx.Sprite;
 import sem.game.gfx.SpriteSheet;
 import sem.game.gfx.gui.Launcher;
 import sem.game.input.KeyInput;
 import sem.game.input.MouseInput;
-import sem.game.tile.Wall;
 
 public class Game extends Canvas implements Runnable
 {
@@ -47,6 +44,7 @@ public class Game extends Canvas implements Runnable
 		
 		public static Image box ;
 		public static Image teleport; 
+		public static Image deathScreenBackground;
 		
 	//------------- CAMERA, LAUNCHER ------------------ 
 	
@@ -151,8 +149,20 @@ public class Game extends Canvas implements Runnable
 		smallPlayer = new Sprite(sheet64, 1, 4);
 		invBorder = new Sprite(sheet64, 16, 1);
 		
-		coinsSheet = new SpriteSheet("/coins_g.png", 64, 64); //coins novo 
+		coinsSheet = new SpriteSheet("/coins_g.png", 64, 64); 
 		coin = new Sprite(coinsSheet, 1, 1);
+		
+		// novoooo
+		
+		try 
+		{
+			deathScreenBackground = ImageIO.read(getClass().getResource("/BG2.png")); //aaa
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		   
 		
 		// teleport slika
 		
@@ -279,7 +289,13 @@ public class Game extends Canvas implements Runnable
 		
 		if (!showDeathScreen) 
 		{
-			g.drawImage(Game.coin.getBufferedImage(), 40, 20, 50, 50, null);
+			// isprobavala nesto novo
+			System.out.println("a coiiinss");
+			g.drawImage(Game.coin.getBufferedImage(), cam.xPlayer - 500,  cam.yPlayer + 200, 50, 50, null);
+
+			System.out.println(cam.xPlayer - Game.WIDTH*2 + 20 + " i  " + cam.yPlayer + 200);
+			System.out.println(cam.x + " c  " + cam.y);
+			
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
 			g.drawString("x" + coins, 95, 65);
@@ -296,9 +312,11 @@ public class Game extends Canvas implements Runnable
 			{
 				deathScreenTime = 180;
 				begining = false;
+				System.out.println("proslo");
 			}
 			else if (!gameOver)
 			{
+				System.out.println("proslo1");
 				g.setColor(Color.white);
 				g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
 				g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 80, cam.yPlayer - 150, 70, 70, null); // igrac treba
@@ -306,9 +324,11 @@ public class Game extends Canvas implements Runnable
 			}
 			else 
 			{
+				System.out.println("proslo2");
+				// ne radi nista osim launcher -.-
 				g.setColor(Color.white);
 				g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
-				//	g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 80, cam.yPlayer - 150, 70, 70, null); // igrac treba
+			//	g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 80, cam.yPlayer - 150, 70, 70, null); // igrac treba
 				g.drawString("Game over", cam.xPlayer, cam.yPlayer - 100);
 				launcher.render(g);
 			}
