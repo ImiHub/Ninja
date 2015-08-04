@@ -291,14 +291,15 @@ public class Game extends Canvas implements Runnable
 		{
 			// isprobavala nesto novo
 			System.out.println("a coiiinss");
-			g.drawImage(Game.coin.getBufferedImage(), cam.xPlayer - 500,  cam.yPlayer - 250+ cam.pomY, 50, 50, null);
-
-			System.out.println(cam.xPlayer - Game.WIDTH*2 + 20 + " i  " + cam.yPlayer + 200);
-			System.out.println(cam.x + " c  " + cam.y);
+			if (cam.xPlayer > 560) g.drawImage(Game.coin.getBufferedImage(), cam.xPlayer - 500,  cam.yPlayer - 250 + cam.pomY, 50, 50, null);
+			else g.drawImage(Game.coin.getBufferedImage(), 70,  cam.yPlayer - 250 + cam.pomY, 50, 50, null);
 			
+				
 			g.setColor(Color.WHITE);
-			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 45));
-			g.drawString("x" + coins, cam.xPlayer - 440,  cam.yPlayer - 218+ cam.pomY);
+			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 55));
+			if (cam.xPlayer > 560) g.drawString("x" + coins, cam.xPlayer - 440,  cam.yPlayer - 210 + cam.pomY);
+			else g.drawString("x" + coins, 130,  cam.yPlayer - 210 + cam.pomY);
+			
 			
 			g.drawImage(Game.smallPlayer.getBufferedImage(), 200, 20, 50, 50, null);
 			g.setColor(Color.WHITE);
