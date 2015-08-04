@@ -289,21 +289,21 @@ public class Game extends Canvas implements Runnable
 		
 		if (!showDeathScreen) 
 		{
-			if (cam.xPlayer > 560) g.drawImage(Game.coin.getBufferedImage(), cam.xPlayer - 500,  cam.yPlayer - 250 + cam.pomY, 50, 50, null);
-			else g.drawImage(Game.coin.getBufferedImage(), 70,  cam.yPlayer - 250 + cam.pomY, 50, 50, null);
+			if (Camera.xPlayer > 560) g.drawImage(Game.coin.getBufferedImage(), Camera.xPlayer - 500,  Camera.yPlayer - 250 + cam.pomY, 50, 50, null);
+			else g.drawImage(Game.coin.getBufferedImage(), 70,  Camera.yPlayer - 250 + cam.pomY, 50, 50, null);
 				
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 55));
-			if (cam.xPlayer > 560) g.drawString("x" + coins, cam.xPlayer - 440,  cam.yPlayer - 210 + cam.pomY);
-			else g.drawString("x" + coins, 130,  cam.yPlayer - 210 + cam.pomY);
+			if (Camera.xPlayer > 560) g.drawString("x" + coins, Camera.xPlayer - 440,  Camera.yPlayer - 210 + cam.pomY);
+			else g.drawString("x" + coins, 130,  Camera.yPlayer - 210 + cam.pomY);
 			
-			if (cam.xPlayer > 560) g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 340,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
-			else g.drawImage(Game.smallPlayer.getBufferedImage(), 230,  cam.yPlayer - 260 + cam.pomY, 60, 60, null);
+			if (Camera.xPlayer > 560) g.drawImage(Game.smallPlayer.getBufferedImage(), Camera.xPlayer - 340,  Camera.yPlayer - 260 + cam.pomY, 60, 60, null);
+			else g.drawImage(Game.smallPlayer.getBufferedImage(), 230,  Camera.yPlayer - 260 + cam.pomY, 60, 60, null);
 				
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 55));
-			if (cam.xPlayer > 560) g.drawString("x" + lives, cam.xPlayer - 290,  cam.yPlayer - 210 + cam.pomY);
-			else g.drawString("x" + lives, 280,  cam.yPlayer - 210 + cam.pomY);
+			if (Camera.xPlayer > 560) g.drawString("x" + lives, Camera.xPlayer - 290,  Camera.yPlayer - 210 + cam.pomY);
+			else g.drawString("x" + lives, 280,  Camera.yPlayer - 210 + cam.pomY);
 		}
 		
 		if (showDeathScreen)
@@ -319,8 +319,8 @@ public class Game extends Canvas implements Runnable
 				System.out.println("proslo1");
 				g.setColor(Color.white);
 				g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
-				g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 80, cam.yPlayer - 150, 70, 70, null); // igrac treba
-				g.drawString("x" + lives, cam.xPlayer, cam.yPlayer - 100);
+				g.drawImage(Game.smallPlayer.getBufferedImage(), Camera.xPlayer - 80, Camera.yPlayer - 150, 70, 70, null); // igrac treba
+				g.drawString("x" + lives, Camera.xPlayer, Camera.yPlayer - 100);
 			}
 			else 
 			{
@@ -329,7 +329,7 @@ public class Game extends Canvas implements Runnable
 				g.setColor(Color.white);
 				g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
 			//	g.drawImage(Game.smallPlayer.getBufferedImage(), cam.xPlayer - 80, cam.yPlayer - 150, 70, 70, null); // igrac treba
-				g.drawString("Game over", cam.xPlayer, cam.yPlayer - 100);
+				g.drawString("Game over", Camera.xPlayer, Camera.yPlayer - 100);
 				launcher.render(g);
 			}
 		}
