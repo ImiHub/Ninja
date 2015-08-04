@@ -307,12 +307,6 @@ public class Game extends Canvas implements Runnable
 			if (cam.xPlayer > 560) g.drawString("x" + coins, cam.xPlayer - 320,  cam.yPlayer - 210 + cam.pomY);
 			else g.drawString("x" + coins, 250,  cam.yPlayer - 210 + cam.pomY);
 			
-			
-			
-			g.drawImage(Game.smallPlayer.getBufferedImage(), 200, 20, 50, 50, null);
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Courier", Font.CENTER_BASELINE, 60));
-			g.drawString("x" + lives, 240, 65);
 		}
 		
 		if (showDeathScreen)
