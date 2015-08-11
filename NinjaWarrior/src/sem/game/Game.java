@@ -55,7 +55,6 @@ public class Game extends Canvas implements Runnable
 	//------------- SPRITE -------------
 		
 		public static Sprite player[] = new Sprite[30];
-		public static BufferedImage playerJumpRight[] = new BufferedImage[10];
 		public static Sprite grass;
 		public static Sprite[] simpleEnemy;
 	
@@ -76,6 +75,12 @@ public class Game extends Canvas implements Runnable
 		public static BufferedImage kunai_l;
 		public static BufferedImage kunai_r;
 		public static BufferedImage kunai_coin;
+		
+		public static BufferedImage playerJumpRight[] = new BufferedImage[10];
+		public static BufferedImage playerJumpLeft[] = new BufferedImage[10];
+
+		public static BufferedImage playerThrowRight[] = new BufferedImage[10];
+		public static BufferedImage playerThrowLeft[] = new BufferedImage[10];
 		
 	//----------  COINS, LIVES, GAME OVER AND MENU  ------------
 	
@@ -136,16 +141,25 @@ public class Game extends Canvas implements Runnable
 		{
 			simpleEnemy[i] = new Sprite(sheet64,i+1,3);
 		}
+		
+		// jump
+		
 		for(int i=0; 10>i;i++)
 		{
-		    try {
-			playerJumpRight[i] = ImageIO.read(getClass().getResource("/idle/jump__00"+i+"-min.png"));
-		   
-		    } catch (IOException e) {
+		    try 
+		    {
+		    	playerJumpRight[i] = ImageIO.read(getClass().getResource("/idle/jump__00"+i+"-min.png"));
+		    	playerJumpLeft[i] = ImageIO.read(getClass().getResource("/idle/Jump__10"+i+".png"));
+			   
+		    	playerThrowRight[i] = ImageIO.read(getClass().getResource("/idle/Throw__00"+i+".png"));
+		    } 
+		    catch (IOException e) 
+		    {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		    }
 		}
+		
 		smallPlayer = new Sprite(sheet64, 1, 4);
 		invBorder = new Sprite(sheet64, 16, 1);
 		

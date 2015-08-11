@@ -19,7 +19,7 @@ public class Player extends Entity
 {
 	public boolean mleft = false;
 	public boolean mright = false;
-	private int frame = 0;
+	public int frame = 0;
 	int oldFacing = 0;
 	private int frameDelay = 0;
 	boolean state = false;
@@ -28,6 +28,7 @@ public class Player extends Entity
 	
 	private int munition = 0; // novo
 	private boolean shooting = false; //novo
+	private boolean shootingPressed = false;
 	
 	private int health = 100; //novo + geteri i seteri za njih dole
 	
@@ -43,6 +44,11 @@ public class Player extends Entity
 	{
 		if (facing == 3)
 		{		
+			if (shooting)
+			{
+				g.drawImage(Game.playerThrowRight[frame],x, y, width,height,null);
+			}
+			
 		    oldFacing=3;
 			try
 			{
@@ -60,6 +66,12 @@ public class Player extends Entity
 		
 		else if (facing == -3)
 		{
+			if (shooting)
+			{
+				
+			}
+			
+			
 		    oldFacing=-3;
 			try
 			{		
@@ -75,6 +87,11 @@ public class Player extends Entity
 		
 		else if (facing == -1)
 		{
+			if (shooting)
+			{
+				
+			}
+			
 		    oldFacing=-1;
 			try
 			{
@@ -91,6 +108,11 @@ public class Player extends Entity
 		
 		else if (facing == 1)
 		{
+			if (shooting)
+			{
+				
+			}
+			
 		    oldFacing=1;
 			try
 			{
@@ -109,7 +131,7 @@ public class Player extends Entity
 		else if (facing == -4)
 		{
 			
-				g.drawImage(Game.playerJumpRight[frame],x, y, width,height,null);
+				g.drawImage(Game.playerJumpLeft[frame],x, y, width,height,null);
 		    		if(frame==9)
 		    		{
 		    		    if(oldFacing==-3) facing=-3;
